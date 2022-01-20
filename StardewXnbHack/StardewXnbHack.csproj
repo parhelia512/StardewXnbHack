@@ -24,11 +24,11 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.0.0" />
-    <PackageReference Include="Platonymous.TMXTile" Version="1.5.9" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="BmFont" HintPath="$(GamePath)\BmFont.dll" />
     <Reference Include="SMAPI.Toolkit" HintPath="$(GamePath)\smapi-internal\SMAPI.Toolkit.dll" />
+    <Reference Include="TMXTile" HintPath="$(GamePath)\smapi-internal\TMXTile.dll" />
   </ItemGroup>
 </Project>
