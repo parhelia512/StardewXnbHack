@@ -1,6 +1,9 @@
 [← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed StardewXnbHack version shown in the console including a Git commit SHA in recent versions.
+
 ## 1.0.8
 Released 19 March 2024.
 
