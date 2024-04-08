@@ -1,6 +1,13 @@
 [← back to readme](README.md)
 
 # Release notes
+## 1.1.0
+Released 08 April 2024.
+
+* You can now omit data fields which match their default value by calling `StardewXnbHack.exe --clean`.
+* Updated for SMAPI 4.0.6.
+* Fixed StardewXnbHack version shown in the console including a Git commit SHA in recent versions.
+
 ## 1.0.8
 Released 19 March 2024.
 

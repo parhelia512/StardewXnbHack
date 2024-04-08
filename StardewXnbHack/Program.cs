@@ -32,7 +32,8 @@ namespace StardewXnbHack
         ** Public methods
         *********/
         /// <summary>The console app entry method.</summary>
-        internal static void Main()
+        /// <param name="args">The command-line arguments.</param>
+        internal static void Main(string[] args)
         {
             // set window title
             Console.Title = $"StardewXnbHack {Program.GetUnpackerVersion()}";
@@ -49,7 +50,7 @@ namespace StardewXnbHack
             // launch app
             try
             {
-                Program.Run();
+                Program.Run(args);
             }
             catch (Exception ex)
             {
@@ -73,22 +74,28 @@ namespace StardewXnbHack
         }
 
         /// <summary>Unpack all assets in the content folder and store them in the output folder.</summary>
+        /// <param name="args">The command-line arguments.</param>
         /// <param name="game">The game instance through which to unpack files, or <c>null</c> to launch a temporary internal instance.</param>
         /// <param name="gamePath">The absolute path to the game folder, or <c>null</c> to auto-detect it.</param>
         /// <param name="getLogger">Get a custom progress update logger, or <c>null</c> to use the default console logging. Receives the unpack context and default logger as arguments.</param>
         /// <param name="showPressAnyKeyToExit">Whether the default logger should show a 'press any key to exit' prompt when it finishes.</param>
-        public static void Run(GameRunner game = null, string gamePath = null, Func<IUnpackContext, IProgressLogger, IProgressLogger> getLogger = null, bool showPressAnyKeyToExit = true)
+        public static void Run(string[] args, GameRunner game = null, string gamePath = null, Func<IUnpackContext, IProgressLogger, IProgressLogger> getLogger = null, bool showPressAnyKeyToExit = true)
         {
             // init logging
             UnpackContext context = new UnpackContext();
             IProgressLogger logger = new DefaultConsoleLogger(context, showPressAnyKeyToExit);
-            logger.OnStepChanged(ProgressStep.Started, $"Running StardewXnbHack {Program.GetUnpackerVersion()}.");
 
             try
             {
                 // get override logger
                 if (getLogger != null)
                     logger = getLogger(context, logger);
+
+                // read command-line arguments
+                bool omitDefaultFields = args.Contains("--clean");
+
+                // start log
+                logger.OnStepChanged(ProgressStep.Started, $"Running StardewXnbHack {Program.GetUnpackerVersion()}.{(omitDefaultFields ? " Special options: omit default fields." : "")}");
 
                 // start timer
                 Stopwatch timer = new Stopwatch();
@@ -101,7 +108,7 @@ namespace StardewXnbHack
                     new SpriteFontWriter(),
                     new TextureWriter(),
                     new XmlSourceWriter(),
-                    new DataWriter() // check last due to more expensive CanWrite
+                    new DataWriter(omitDefaultFields) // check last due to more expensive CanWrite
                 };
 
                 // get paths

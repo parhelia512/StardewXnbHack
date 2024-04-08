@@ -5,7 +5,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/Pathoschild/StardewXnbHack</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.8</Version>
+    <Version>1.1.0</Version>
 
     <!--build-->
     <TargetFramework>net6.0</TargetFramework>
@@ -13,6 +13,9 @@
     <OutputType>Exe</OutputType>
     <ApplicationIcon>assets/icon.ico</ApplicationIcon>
     <DefineConstants Condition="$(OS) == 'Windows_NT'">$(DefineConstants);IS_FOR_WINDOWS</DefineConstants>
+
+    <!--don't append Git commit SHA to version, since it's shown in the app-->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 
     <!--mod build package-->
     <CopyModReferencesToBuildOutput>True</CopyModReferencesToBuildOutput>
