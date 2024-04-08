@@ -56,6 +56,18 @@ You can ask for help in [#making-mods on the Stardew Valley Discord](https://sta
 If you're sure it's a StardewXnbHack bug (and not a usage error), you can report it on the [issues
 page](https://github.com/Pathoschild/StardewXnbHack/issues).
 
+### Can I simplify the data files?
+By default, unpacked data files include _all_ of the fields. This can be very noisy, and doesn't
+really match how the data assets are formatted in the original code.
+
+You can omit the default fields instead:
+
+1. Open a terminal in [your game folder](https://stardewvalleywiki.com/Modding:Game_folder).
+2. Run `StardewXnbHack.exe --clean` to omit the default fields.
+
+This is still experimental, but it may become the default behavior in future versions.
+
+
 ## For StardewXnbHack developers
 This section explains how to edit or compile StardewXnbHack from the source code. Most users should
 [use the release version](#usage) instead.

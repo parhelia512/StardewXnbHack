@@ -11,6 +11,10 @@ namespace StardewXnbHack.Framework.Writers
         /*********
         ** Public methods
         *********/
+        /// <inheritdoc />
+        public DataWriter(bool omitDefaultFields)
+            : base(omitDefaultFields) { }
+
         /// <summary>Whether the writer can handle a given asset.</summary>
         /// <param name="asset">The asset value.</param>
         public override bool CanWrite(object asset)

@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* You can now omit data fields which match their default value by calling `StardewXnbHack.exe --clean`.
 * Fixed StardewXnbHack version shown in the console including a Git commit SHA in recent versions.
 
 ## 1.0.8

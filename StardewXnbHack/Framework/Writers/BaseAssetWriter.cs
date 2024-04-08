@@ -1,5 +1,6 @@
 using System;
 using Force.DeepCloner;
+using Microsoft.Xna.Framework.Content;
 using Newtonsoft.Json;
 using StardewModdingAPI.Toolkit.Serialization;
 using StardewModdingAPI.Toolkit.Utilities;
@@ -13,7 +14,7 @@ namespace StardewXnbHack.Framework.Writers
         ** Private methods
         *********/
         /// <summary>The settings to use when serializing JSON.</summary>
-        private static readonly Lazy<JsonSerializerSettings> JsonSettings = new(BaseAssetWriter.GetJsonSerializerSettings);
+        private readonly Lazy<JsonSerializerSettings> JsonSettings;
 
 
         /*********
@@ -36,11 +37,18 @@ namespace StardewXnbHack.Framework.Writers
         /*********
         ** Protected methods
         *********/
+        /// <summary>Construct an instance.</summary>
+        /// <param name="omitDefaultFields">Whether to ignore members marked <see cref="ContentSerializerAttribute.Optional"/> which match the default value.</param>
+        protected BaseAssetWriter(bool omitDefaultFields = false)
+        {
+            this.JsonSettings = new(() => BaseAssetWriter.GetJsonSerializerSettings(omitDefaultFields));
+        }
+
         /// <summary>Get a text representation for the given asset.</summary>
         /// <param name="asset">The asset to serialize.</param>
         protected string FormatData(object asset)
         {
-            return JsonConvert.SerializeObject(asset, BaseAssetWriter.JsonSettings.Value);
+            return JsonConvert.SerializeObject(asset, this.JsonSettings.Value);
         }
 
         /// <summary>Get the recommended file extension for a data file formatted with <see cref="FormatData"/>.</summary>
@@ -50,12 +58,13 @@ namespace StardewXnbHack.Framework.Writers
         }
 
         /// <summary>Get the serializer settings to apply when writing JSON.</summary>
-        private static JsonSerializerSettings GetJsonSerializerSettings()
+        /// <param name="omitDefaultFields">Whether to ignore members marked <see cref="ContentSerializerAttribute.Optional"/> which match the default value.</param>
+        private static JsonSerializerSettings GetJsonSerializerSettings(bool omitDefaultFields = false)
         {
             JsonHelper jsonHelper = new();
             JsonSerializerSettings settings = jsonHelper.JsonSettings.DeepClone();
 
-            settings.ContractResolver = new IgnoreDefaultOptionalPropertiesResolver();
+            settings.ContractResolver = new IgnoreDefaultOptionalPropertiesResolver(omitDefaultFields);
 
             return settings;
         }
