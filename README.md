@@ -38,7 +38,11 @@ License | MIT | GPL | n/a
 <sup>¹ `.tmx` is the [preferred map format](https://stardewvalleywiki.com/Modding:Maps#Map_formats), but you can open the `.tbin` file in Tiled and export it as `.tmx`.</sup>
 
 ### When I run StardewXnbHack, nothing happens or it quickly exits?
-That means it crashed for some reason. Here's how to see what the error is:
+That means it crashed for some reason.
+
+First, make sure you have the latest versions of SMAPI and Stardew Valley.
+
+If it still happens, here's how to see what the error is:
 
 <div style="margin-left:2em;">
 

@@ -1,6 +1,11 @@
 [← back to readme](README.md)
 
 # Release notes
+## 1.1.1
+Released 20 August 2024.
+
+* Updated for Stardew Valley 1.6.9 and SMAPI 4.1.0.
+
 ## 1.1.0
 Released 08 April 2024.
 
