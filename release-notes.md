@@ -1,6 +1,11 @@
 [← back to readme](README.md)
 
 # Release notes
+## 1.1.2
+Released 05 November 2024.
+
+* Updated for SMAPI 4.1.4.
+
 ## 1.1.1
 Released 20 August 2024.
 
